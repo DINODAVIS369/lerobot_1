@@ -1,0 +1,45 @@
+# MoveIt Servo configuration for SO101
+# Jazzy version expects flattened parameters or specific prefixing
+
+command_in_type: "speed_units"
+cartesian_command_in_topic: /servo_node/delta_twist_cmds
+joint_command_in_topic: /servo_node/delta_joint_cmds
+
+planning_group_name: arm
+move_group_name: arm
+
+scale:
+  linear: 0.4
+  rotational: 0.8
+
+position_only_ik: true
+
+publish_period: 0.05
+max_expected_latency: 0.5
+stale_state_threshold: 2.0
+
+planning_frame: world
+robot_link_command_frame: base
+ee_frame_name: jaw
+
+# These are the critical joint state parameters
+joint_topic: /joint_states_clean
+joint_states_topic: /joint_states_clean
+
+status_topic: /servo_node/status
+command_out_topic: /arm_controller/joint_trajectory
+command_out_type: trajectory_msgs/JointTrajectory
+
+publish_joint_positions: true
+publish_joint_velocities: false
+publish_joint_accelerations: false
+
+lower_singularity_threshold: 10000.0
+hard_stop_singularity_threshold: 20000.0
+leaving_singularity_threshold_multiplier: 2.0
+
+check_collisions: false
+collision_check_rate: 10.0
+self_collision_proximity_threshold: 0.01
+scene_collision_proximity_threshold: 0.02
+
